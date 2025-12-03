@@ -1,0 +1,26 @@
+services:
+  backend: 
+    build: 
+      dockerfile: ./backend/Dockerfile
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_DIR: /models
+    networks:
+      - net
+
+  frontend: 
+    build: 
+      dockerfile: ./frontend/Dockerfile
+      context: .
+    ports:
+      - "3000:8501"
+    environment:
+      BACKEND_URL: http://backend:8000
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge  

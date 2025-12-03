@@ -1,0 +1,8 @@
+pandas
+scikit-learn==1.6.0
+joblib
+fastapi
+uvicorn
+category-encoders
+dill
+python-multipart

@@ -1,0 +1,1 @@
+{"precision": 0.6451612903225806, "recall": 0.32, "f1": 0.42780748663101603, "params": {"max_depth": 3, "n_estimators": 50}, "model_filename": "model_GradientBoostingClassifier.joblib"}
