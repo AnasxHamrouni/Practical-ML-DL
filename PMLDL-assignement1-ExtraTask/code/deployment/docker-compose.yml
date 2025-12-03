@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  mlflow:
+    build:
+      context: ./mlflow
+      dockerfile: Dockerfile
+    container_name: mlflow
+    ports:
+      - "5001:5001"
+    command: >
+      mlflow server
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --default-artifact-root /mlflow/artifacts
+      --host 0.0.0.0
+      --port 5001
+    volumes:
+      - ./mlflow:/mlflow
+
+
+
+  api:
+    build: ./api
+    container_name: badminton_api
+    volumes:
+      - ../../models:/app/models
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow
+
+  app:
+    build: ./app
+    container_name: badminton_app
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000/predict
+    depends_on:
+      - api

@@ -1,0 +1,74 @@
+schema: '2.0'
+stages:
+  data:
+    cmd: python code/datasets/prepare_data.py
+    deps:
+    - path: code/datasets/prepare_data.py
+      hash: md5
+      md5: 8bfebc7355ae1d0ff51506d14ec5547b
+      size: 12876
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 4d49c5511ac0dee7346051adf32d99f1
+      size: 667896
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 3912215000f0e73bac005d7aeacae6a8
+      size: 67956611
+  train:
+    cmd: MLFLOW_TRACKING_URI=http://localhost:5001 python code/models/train.py 
+      --processed-dir data/processed --models-dir models --mlflow-uri 
+      http://localhost:5001
+    deps:
+    - path: code/models/train.py
+      hash: md5
+      md5: f76f2c74d5fdaecc1712f5f471491ede
+      size: 18957
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 4d49c5511ac0dee7346051adf32d99f1
+      size: 667896
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 3912215000f0e73bac005d7aeacae6a8
+      size: 67956611
+    - path: params.yaml
+      hash: md5
+      md5: 9a9d0997887232323433ad82f93adf27
+      size: 311
+    params:
+      params.yaml:
+        train:
+          n_splits: 3
+          exclude_leaky_features: true
+          use_smote: true
+          calibrate_probabilities: true
+          n_estimators_cv: 100
+          n_estimators_final: 150
+          max_depth: 6
+          learning_rate: 0.1
+          subsample: 0.8
+          colsample_bytree: 0.8
+          mlflow_uri: file:./mlruns
+          mlflow_experiment: automated_pipeline_experiment
+    outs:
+    - path: models/metrics.json
+      hash: md5
+      md5: 90382831d22d61794d57f6e6c1690fbd
+      size: 769
+    - path: models/model.pkl
+      hash: md5
+      md5: 201575570dc91c45715700abddae6336
+      size: 415504
+  deploy:
+    cmd: docker-compose -f code/deployment/docker-compose.yml up -d --build
+    deps:
+    - path: code/deployment/docker-compose.yml
+      hash: md5
+      md5: c2c8ddf010d26afbcabc0235f6164786
+      size: 715
+    - path: models/model.pkl
+      hash: md5
+      md5: 201575570dc91c45715700abddae6336
+      size: 415504

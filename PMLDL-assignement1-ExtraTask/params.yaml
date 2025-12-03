@@ -1,0 +1,13 @@
+train:
+  n_splits: 3
+  exclude_leaky_features: true
+  use_smote: true
+  calibrate_probabilities: true
+  n_estimators_cv: 100
+  n_estimators_final: 150
+  max_depth: 6
+  learning_rate: 0.1
+  subsample: 0.8
+  colsample_bytree: 0.8
+  mlflow_uri: "file:./mlruns"
+  mlflow_experiment: "automated_pipeline_experiment"

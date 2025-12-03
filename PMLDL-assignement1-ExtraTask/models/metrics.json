@@ -1,0 +1,32 @@
+{
+  "cv_mean_metrics": {
+    "accuracy": 0.9999923793847115,
+    "auc": 0.9999934099831352,
+    "sensitivity": 1.0,
+    "specificity": 0.9999736412040697,
+    "precision": 0.9999892803353111,
+    "f1": 0.9999946401245635
+  },
+  "test_metrics": {
+    "accuracy": 1.0,
+    "auc": 1.0,
+    "sensitivity": 1.0,
+    "specificity": 1.0,
+    "precision": 1.0,
+    "f1": 1.0
+  },
+  "chosen_params": {
+    "n_splits": 3,
+    "exclude_leaky_features": true,
+    "use_smote": true,
+    "calibrate_probabilities": true,
+    "n_estimators_cv": 100,
+    "n_estimators_final": 150,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "mlflow_uri": "http://localhost:5001",
+    "mlflow_experiment": "automated_pipeline_experiment"
+  }
+}

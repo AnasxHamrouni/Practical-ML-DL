@@ -1,0 +1,28 @@
+stages:
+  data:
+    cmd: python code/datasets/prepare_data.py
+    deps:
+      - code/datasets/prepare_data.py
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train:
+    cmd: MLFLOW_TRACKING_URI=http://localhost:5001 python code/models/train.py --processed-dir data/processed --models-dir models --mlflow-uri http://localhost:5001
+    deps:
+      - code/models/train.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - params.yaml
+    params:
+      - train
+    outs:
+      - models/model.pkl
+    metrics:
+      - models/metrics.json
+
+  deploy:
+    cmd: docker-compose -f code/deployment/docker-compose.yml up -d --build
+    deps:
+      - models/model.pkl
+      - code/deployment/docker-compose.yml
