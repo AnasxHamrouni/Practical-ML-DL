@@ -1,0 +1,10 @@
+artifact_location: file:///Users/anashamrouni/Documents/InnopolisUniversity/Bachelor/PMLDL/Assignments/PMLDL-assignmant1/mlflow/0/models/m-16da1f6903c341b5bfb776a0d15bce33/artifacts
+creation_timestamp: 1758787523349
+experiment_id: '0'
+last_updated_timestamp: 1758787526236
+model_id: m-16da1f6903c341b5bfb776a0d15bce33
+model_type: null
+name: calibrated_xgb_model
+source_run_id: 210429299c3f4414b1170528c7b9336f
+status: 2
+status_message: null

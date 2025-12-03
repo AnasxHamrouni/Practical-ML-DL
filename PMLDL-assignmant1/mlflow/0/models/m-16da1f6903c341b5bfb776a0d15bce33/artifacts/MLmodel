@@ -1,0 +1,22 @@
+artifact_path: file:///Users/anashamrouni/Documents/InnopolisUniversity/Bachelor/PMLDL/Assignments/PMLDL-assignmant1/mlflow/0/models/m-16da1f6903c341b5bfb776a0d15bce33/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+mlflow_version: 3.4.0
+model_id: m-16da1f6903c341b5bfb776a0d15bce33
+model_size_bytes: 415113
+model_uuid: m-16da1f6903c341b5bfb776a0d15bce33
+prompts: null
+run_id: 210429299c3f4414b1170528c7b9336f
+utc_time_created: '2025-09-25 08:05:23.370558'
